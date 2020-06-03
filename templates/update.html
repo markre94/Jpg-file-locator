@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>Task master</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+
+    <div class="row">
+        <div class="col">
+            <h1 style="text-align: center">Picture locator</h1>
+
+            <form action="/" method="POST" enctype="multipart/form-data">
+
+            <div class="form-group">
+              <label for="image">Select a image:</label>
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" name="image" id="image">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Upload</button>
+
+            </form>
+        </div>
+    </div>
+    <hr>
+    <table>
+            <tr>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Coordinates</th>
+                <th>Actions</th>
+            </tr>
+
+            <tr>
+                <td> {{ filename }} </td>
+                <td> {{ location }}</td>
+                <td> {{ coords }}</td>
+                <td>
+                    <a href="/">Delete</a>
+                    <br>
+                    <a href="/show" target="_blank">Show on map</a>
+                </td>
+
+            </tr>
+    </table>
+
+</div>
+
+
+{% endblock %}
+
