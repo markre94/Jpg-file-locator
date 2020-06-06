@@ -14,7 +14,7 @@ table, td, th {
 
 table {
     border-collapse: collapse;
-    width: 100%;
+    width: 50%;
 }
 
 th {
@@ -23,7 +23,7 @@ th {
 
 td {
     text-align: center;
-    padding: 5px;
+    padding: 10px;
 }
 
 .form {

@@ -1,6 +1,5 @@
 import os
 from typing import List
-
 from geopy.geocoders import Nominatim
 from GPSPhoto import gpsphoto
 from selenium import webdriver
@@ -47,21 +46,3 @@ class Picture:
         return browser.current_url
 
 
-if __name__ == '__main__':
-    pass
-    # folder1 = JpgPicFinder('/Users/marcin94/Desktop/my_files')
-    # names_of_jpg_file = folder1.list_jpg_files()
-    # print(names_of_jpg_file)
-    #
-    # coords = []
-    # for jpg_file in names_of_jpg_file:
-    #     data = JpgPicFinder.get_coords(jpg_file)
-    #     coords.append((data['Latitude'], data['Longitude']))
-    #
-    # print(coords)
-    #
-    # my_locations = [JpgPicFinder.search_location(elem) for elem in coords]
-    # print(my_locations)
-
-    # pic1 = Picture(names_of_jpg_file[0], my_locations[0])
-    # pic1.google_maps_search()
