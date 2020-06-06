@@ -35,7 +35,7 @@ class Picture:
         self.location = location
         self.name = name
     @staticmethod
-    def google_maps_search(keys):
+    def google_maps_search(keys: str):
         chrome_options=Options()
         chrome_options.add_argument("--headless")
         browser = webdriver.Chrome(options=chrome_options)

@@ -27,7 +27,7 @@ def index():
     return render_template('update.html')
 
 
-@app.route('/show', methods=['POST', 'GET'])
+@app.route('/show', methods=['GET'])
 def show_on_map():
     return redirect(Picture.google_maps_search(keys=str(coords)))
 
