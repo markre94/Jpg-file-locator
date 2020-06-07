@@ -20,13 +20,18 @@ class JpgPicFinder:
 
     @staticmethod
     def get_coords(filename: str):
-        return gpsphoto.getGPSData(filename)
+        return (gpsphoto.getGPSData(filename))
 
     @staticmethod
     def search_location(point: tuple):
         geolocator = Nominatim(user_agent='my-application')
         location = geolocator.reverse(point)
         return location.address
+    @staticmethod
+    def decdeg2dms(dd):
+        mnt, sec = divmod(dd * 3600, 60)
+        deg, mnt = divmod(mnt, 60)
+        return deg, mnt, sec
 
 
 class Picture:

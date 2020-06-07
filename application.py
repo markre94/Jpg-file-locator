@@ -19,7 +19,7 @@ def index():
             try:
                 pic.save(os.path.join(app.config['IMAGE_UPLOADS'], pic.filename))
                 data = JpgPicFinder.get_coords(os.path.join(app.config['IMAGE_UPLOADS'], pic.filename))
-                coords = (data['Latitude'], data['Longitude'])
+                coords = (round(data['Latitude'], 3), round(data['Longitude'], 3))
                 location = JpgPicFinder.search_location(coords)
                 return render_template('update.html', location=location, coords=coords, filename=pic.filename)
             except:
