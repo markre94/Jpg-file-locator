@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask, render_template, url_for, request, redirect, flash
+from flask import Flask, render_template, url_for, request, redirect, flash, session
 import os
 from picture_locator import JpgPicFinder, Picture
 from flask_sqlalchemy import SQLAlchemy
@@ -12,7 +12,6 @@ app.config['IMAGE_UPLOADS'] = path
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
-    global coords
     if request.method == 'POST':
         if request.files:
             pic = request.files['image']
@@ -21,6 +20,7 @@ def index():
                 data = JpgPicFinder.get_coords(os.path.join(app.config['IMAGE_UPLOADS'], pic.filename))
                 coords = (round(data['Latitude'], 3), round(data['Longitude'], 3))
                 location = JpgPicFinder.search_location(coords)
+                session['coords'] = coords
                 return render_template('update.html', location=location, coords=coords, filename=pic.filename)
             except:
                 flash('Something went wrong', 'error')
@@ -29,7 +29,8 @@ def index():
 
 @app.route('/show', methods=['GET'])
 def show_on_map():
-    return redirect(Picture.google_maps_search(keys=str(coords)))
+    my_cor = session.get['coords']
+    return redirect(Picture.google_maps_search(keys=my_cor))
 
 
 if __name__ == '__main__':
