@@ -20,13 +20,14 @@ class JpgPicFinder:
 
     @staticmethod
     def get_coords(filename: str):
-        return (gpsphoto.getGPSData(filename))
+        return gpsphoto.getGPSData(filename)
 
     @staticmethod
     def search_location(point: tuple):
         geolocator = Nominatim(user_agent='my-application')
         location = geolocator.reverse(point)
         return location.address
+
     @staticmethod
     def decdeg2dms(dd):
         mnt, sec = divmod(dd * 3600, 60)
@@ -39,15 +40,11 @@ class Picture:
     def __init__(self, name: str, location: str):
         self.location = location
         self.name = name
+
     @staticmethod
     def google_maps_search(keys: str):
-        chrome_options=Options()
+        chrome_options = Options()
         chrome_options.add_argument("--headless")
         browser = webdriver.Chrome(options=chrome_options)
-        browser.get('https://www.google.com/maps/')
-        browser.find_element_by_id('searchboxinput').send_keys(keys)
-        browser.find_element_by_id("searchbox-searchbutton").click()
-        time.sleep(5)
+        browser.get('https://www.google.com/maps/' + 'search/?api=1&query=' + keys)
         return browser.current_url
-
-

@@ -2,7 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, render_template, url_for, request, redirect, flash, session
 import os
 from picture_locator import JpgPicFinder, Picture
-from flask_sqlalchemy import SQLAlchemy
+from helpers import convertToStr
 
 app = Flask('__name__')
 path = '/Users/marcin94/PycharmProjects/Jpg_flask/pics'
@@ -18,19 +18,20 @@ def index():
             try:
                 pic.save(os.path.join(app.config['IMAGE_UPLOADS'], pic.filename))
                 data = JpgPicFinder.get_coords(os.path.join(app.config['IMAGE_UPLOADS'], pic.filename))
-                coords = (round(data['Latitude'], 3), round(data['Longitude'], 3))
+                coords = (round(data['Latitude'], 7), round(data['Longitude'], 7))
                 location = JpgPicFinder.search_location(coords)
                 session['coords'] = coords
                 return render_template('update.html', location=location, coords=coords, filename=pic.filename)
-            except:
-                flash('Something went wrong', 'error')
+            except IsADirectoryError:
+                flash("Ups! Forgot to add a file didn't you?", 'error')
+
     return render_template('update.html')
 
 
 @app.route('/show', methods=['GET'])
 def show_on_map():
-    my_cor = session.get['coords']
-    return redirect(Picture.google_maps_search(keys=my_cor))
+    my_cor = session.get('coords')
+    return redirect(Picture.google_maps_search(keys=convertToStr(my_cor)))
 
 
 if __name__ == '__main__':
