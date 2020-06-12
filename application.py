@@ -1,11 +1,11 @@
-from flask import Flask, render_template, url_for, request, redirect, flash, session
+from flask import Flask, render_template, request, redirect, flash, session
 import os
-from picture_locator import JpgPicFinder, Picture
+from picture_locator import JpgPicFinder
 from helpers import convertToStr
 from errors import NoCoord
 
 app = Flask('__name__')
-path = '/Users/marcin94/PycharmProjects/Jpg_flask/pics'
+path = 'pics'
 app.config['SECRET_KEY'] = 'ZOMn8n1Jt8KTfXPwbcZ3tw'
 app.config['IMAGE_UPLOADS'] = path
 
@@ -36,7 +36,7 @@ def index():
 @app.route('/show', methods=['GET'])
 def show_on_map():
     my_cor = session.get('coords')
-    return redirect(Picture.google_maps_search(keys=convertToStr(my_cor)))
+    return redirect('https://www.google.com/maps/' + 'search/?api=1&query=' + convertToStr(my_cor))
 
 
 if __name__ == '__main__':
