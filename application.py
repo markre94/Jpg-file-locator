@@ -1,8 +1,8 @@
-from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, render_template, url_for, request, redirect, flash, session
 import os
 from picture_locator import JpgPicFinder, Picture
 from helpers import convertToStr
+from errors import NoCoord
 
 app = Flask('__name__')
 path = '/Users/marcin94/PycharmProjects/Jpg_flask/pics'
@@ -18,12 +18,17 @@ def index():
             try:
                 pic.save(os.path.join(app.config['IMAGE_UPLOADS'], pic.filename))
                 data = JpgPicFinder.get_coords(os.path.join(app.config['IMAGE_UPLOADS'], pic.filename))
-                coords = (round(data['Latitude'], 7), round(data['Longitude'], 7))
-                location = JpgPicFinder.search_location(coords)
-                session['coords'] = coords
-                return render_template('update.html', location=location, coords=coords, filename=pic.filename)
+                if data == {}:
+                    raise NoCoord
+                else:
+                    coords = (round(data['Latitude'], 7), round(data['Longitude'], 7))
+                    location = JpgPicFinder.search_location(coords)
+                    session['coords'] = coords
+                    return render_template('update.html', location=location, coords=coords, filename=pic.filename)
             except IsADirectoryError:
                 flash("Ups! Forgot to add a file didn't you?", 'error')
+            except NoCoord:
+                flash('No gps data available for current picture!', 'error')
 
     return render_template('update.html')
 

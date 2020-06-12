@@ -1,10 +1,8 @@
 import os
-from typing import List
 from geopy.geocoders import Nominatim
 from GPSPhoto import gpsphoto
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-import time
 
 
 class JpgPicFinder:
@@ -28,12 +26,6 @@ class JpgPicFinder:
         location = geolocator.reverse(point)
         return location.address
 
-    @staticmethod
-    def decdeg2dms(dd):
-        mnt, sec = divmod(dd * 3600, 60)
-        deg, mnt = divmod(mnt, 60)
-        return deg, mnt, sec
-
 
 class Picture:
 
@@ -48,3 +40,6 @@ class Picture:
         browser = webdriver.Chrome(options=chrome_options)
         browser.get('https://www.google.com/maps/' + 'search/?api=1&query=' + keys)
         return browser.current_url
+
+
+
