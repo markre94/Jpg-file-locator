@@ -50,17 +50,17 @@
                 </div>
             </div>
 
-
         </form>
     </div>
-
-<!--    <br>-->
-<!--    <div class="d-flex justify-content-center align-items-center container ">-->
-<!--        <p>-->
-<!--                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4291.762933560182!2d14.55022888643752!3d53.42621008359463!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47aa091195a47fc5%3A0x596c8c68ba43837e!2sGaleria%20Kaskada!5e0!3m2!1sen!2spl!4v1591869545958!5m2!1sen!2spl" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>-->
-
-<!--        </p>-->
-<!--    </div>-->
+    <script>
+              $('#inputGroupFile03').on('change',function(){
+                //get the file name
+                    var fileName = $(this).val();
+                    var cleanFileName = fileName.replace('C:\\fakepath\\', " ");
+                //replace the "Choose a file" label
+                    $(this).next('.custom-file-label').html(cleanFileName);
+            })
+    </script>
 
     {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -69,8 +69,6 @@
             {% endfor %}
             {% endif %}
     {% endwith %}
-
-
 
 </div>
 

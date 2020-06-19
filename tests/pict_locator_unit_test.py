@@ -1,6 +1,6 @@
 from pytest import raises
-import picture_locator
-from helpers import convertToStr
+from app import picture_locator
+from app.helpers import convertToStr
 
 
 def test_jpg_find_init():
@@ -21,7 +21,6 @@ def test_list_ok():
 
 
 def test_get_coords():
-    # test_jpg = picture_locator.JpgPicFinder(path_in='/Users/marcin94/Desktop/my_files')
     result = picture_locator.JpgPicFinder.get_coords(filename='/Users/marcin94/Desktop/my_files/test_img.jpg')
     assert type(result) is dict
     assert result['Latitude'] == 37.014630555555556
@@ -36,9 +35,9 @@ def test_search_location():
 
 
 def test_pic_init():
-    test_pic = picture_locator.Picture(name='test_name', location='/test/location')
+    test_pic = picture_locator.Picture(name='test_name', location='/tests/location')
     assert test_pic.name == 'test_name'
-    assert test_pic.location == '/test/location'
+    assert test_pic.location == '/tests/location'
 
 
 def test_google_maps_search():
