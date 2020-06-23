@@ -31,6 +31,5 @@ def index() :
 
 @app.route('/show', methods=['GET'])
 def show_on_map() :
-    # return render_template('map.html')
     my_cor = session.get('coords')
     return redirect('https://www.google.com/maps/' + 'search/?api=1&query=' + convertToStr(my_cor))
