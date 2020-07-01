@@ -2,9 +2,11 @@
 
 ### Functionality
 
-This web app provides a valid information about a uploaded picture in .jpg format. The informations consist of a address of where the picture was taken along with it geographical coordinates.
+This web app provides a valid information about a uploaded picture in .jpg format. The scope of this informations are mainly focused around the localisation of where the current picture has been taken. 
 
-The app has got a feature which allows user to see the location of the picture on the map by redirecting a web page to the Google Maps application.
+The app has got a cool feature which allows user to see the actual localisation of the picture on the map by redirecting a web page to the Google Maps application.
+
+This applies only for the pictures in .jpg format that have an GPSInfo available. It should work porperly with the all of the pictures took on Iphone and Android smarphones.
 
 ### File structure
 The Jpg_flask consist the following files:
@@ -65,7 +67,7 @@ def app_browser_main() -> webdriver.Chrome :
 
 ### Additinal challenges
 
-- [ ] write more units tests for the application using mocking
+- [ ] write more units tests for the application using mocking methods
 - [ ] place the application on the Heroku Server
 
 
