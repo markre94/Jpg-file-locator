@@ -34,7 +34,7 @@ The test files are located in the test/ folder. There unit tests along with the 
 
 With the combination of the Selenium and Pytest the fully functional tests were writen. The whole idea of writting the automated tests e.g. end to end tests was to contruct a optimal fixture that would set up a flask application server and killed it after the tests have ended. The fixture file is located in the test/conftest.py file. 
 
-''' import pytest
+```import pytest
 from selenium import webdriver
 import subprocess
 
@@ -61,5 +61,4 @@ def app_browser_main() -> webdriver.Chrome :
     if x[0] == 'Python':
         subprocess.run(f'kill {x[1]}', shell=True)
     print("Killed")
- 
-'''
+```
