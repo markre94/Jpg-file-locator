@@ -14,12 +14,12 @@ The Jpg_flask consist the following files:
 - requirements.txt _contains the required packages for the project._
 
 
-- app/ configuration of the aplication along with all backend.
-- pics/ a directory where uploaded pictures are being saved.
-- static/ is a folder which contains static assets for the frontend: CSS style sheets, images, etc.
-- templates/ is a folder which contains html templates to be rendered.
+- app/ _configuration of the aplication along with all backend._
+- pics/ _a directory where uploaded pictures are being saved._
+- static/ _is a folder which contains static assets for the frontend: CSS style sheets, images, etc._
+- templates/ _is a folder which contains html templates to be rendered._
 
-The test files are located in the test/ folder. There unit tests along with the system tests were written with the use of pytest and selenium.
+The test files are located in the test/ folder. 
 
 ### Presentation
 
@@ -34,7 +34,7 @@ The test files are located in the test/ folder. There unit tests along with the 
 
 ### System tests
 
-With the combination of the Selenium and Pytest the fully functional tests were writen. The whole idea of writting the automated tests e.g. end to end tests was to contruct a optimal fixture that would set up a flask application server and killed it after the tests have ended. The fixture file is located in the test/conftest.py file. 
+With the combination of the Selenium and Pytest the fully functional tests were writen. The main challenge of writting the automated tests e.g. end to end tests was to contruct a optimal fixture that would set up a flask application server and killed it after the tests have ended. The fixture file is located in the test/conftest.py file.
 
 ```import pytest
 from selenium import webdriver
