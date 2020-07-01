@@ -1,4 +1,4 @@
-# Jpg_flask
+# JPG PICTURE LOCATOR FLASK WEB APP
 
 ### Functionality
 
