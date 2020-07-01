@@ -25,3 +25,6 @@ The test files are located in the test/ folder. There unit tests along with the 
 
 
 ![Zrzut ekranu 2020-07-1 o 22 29 25](https://user-images.githubusercontent.com/54006852/86289694-6cc8db00-bbec-11ea-9e4b-efff4b7857c5.png)
+
+
+![Zrzut ekranu 2020-07-1 o 22 29 39](https://user-images.githubusercontent.com/54006852/86289969-e660c900-bbec-11ea-9ea7-6235276c8b10.png)
