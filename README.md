@@ -20,3 +20,4 @@ The Jpg_flask consist the following files:
 The test files are located in the test/ folder. There unit tests along with the system tests were written with the use of pytest and selenium.
 
 ### Presentation
+https://github.com/markre94/Jpg_flask/issues/1#issuecomment-652634007
