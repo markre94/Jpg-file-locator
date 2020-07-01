@@ -62,3 +62,10 @@ def app_browser_main() -> webdriver.Chrome :
         subprocess.run(f'kill {x[1]}', shell=True)
     print("Killed")
 ```
+
+### Additinal challenges
+
+- [ ] write more units tests for the application using mocking
+- [ ] place the application on the Heroku Server
+
+
