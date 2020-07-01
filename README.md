@@ -28,3 +28,8 @@ The test files are located in the test/ folder. There unit tests along with the 
 
 
 ![Zrzut ekranu 2020-07-1 o 22 29 39](https://user-images.githubusercontent.com/54006852/86289969-e660c900-bbec-11ea-9ea7-6235276c8b10.png)
+
+
+### System tests
+
+With the combination of the Selenium and Pytest the fully functional tests were writen. The whole idea of writting the automated tests e.g. end to end tests was to contruct a optimal fixture that would set up a flask application server and killed it after the tests have ended. The fixture file is located in the test/conftest.py file. 
