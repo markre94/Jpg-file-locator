@@ -34,7 +34,7 @@ The test files are located in the test/ folder.
 
 ### System tests
 
-With the combination of the Selenium and Pytest the fully functional tests were writen. The main challenge of writting the automated tests e.g. end to end tests was to contruct a optimal fixture that would set up a flask application server and killed it after the tests have ended. The fixture file is located in the test/conftest.py file.
+With the combination of the Selenium and Pytest the fully functional tests were writen. The main challenge of writting the automated tests e.g. end to end tests was to construct a optimal fixture that would set up a flask application server and killed it after the tests have ended. The fixture file is located in the test/conftest.py file.
 
 ```import pytest
 from selenium import webdriver
