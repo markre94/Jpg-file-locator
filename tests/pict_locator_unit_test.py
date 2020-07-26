@@ -1,46 +1,34 @@
 from pytest import raises
-from app import picture_locator
-from app.helpers import convertToStr
-
+from app.picture_locator import JpgPicFinder, Picture
+from unittest.mock import patch, MagicMock
 
 def test_jpg_find_init():
-    test_jpg = picture_locator.JpgPicFinder(path_in='/this/is/tes/path')
+    test_jpg = JpgPicFinder(path_in='/this/is/tes/path')
     assert test_jpg.path_in == '/this/is/tes/path'
 
 
 def test_list_jpg_files():
     with raises(FileNotFoundError):
-        test_jpg = picture_locator.JpgPicFinder(path_in='/this/is/tes/path')
+        test_jpg = JpgPicFinder(path_in='/this/is/tes/path')
         assert test_jpg.list_jpg_files()
 
 
-def test_list_ok():
-    test_jpg = picture_locator.JpgPicFinder(path_in='/Users/marcin94/Desktop/my_files')
-    assert type(test_jpg.list_jpg_files()) is list
-    assert len(test_jpg.list_jpg_files()) == 2
+@patch("app.picture_locator.gpsphoto.getGPSData", return_value={"key", "value"})
+def test_get_coords(mock_gpsphoto: MagicMock):
+    test_file = "/test/file.jpg"
+    print(mock_gpsphoto(test_file))
+    mock_gpsphoto.assert_called_with(test_file)
 
 
-def test_get_coords():
-    result = picture_locator.JpgPicFinder.get_coords(filename='/Users/marcin94/Desktop/my_files/test_img.jpg')
-    assert type(result) is dict
-    assert result['Latitude'] == 37.014630555555556
-    assert result['Longitude'] == -7.934463888888889
-
-
-def test_search_location():
-    data = picture_locator.JpgPicFinder.get_coords(filename='/Users/marcin94/Desktop/my_files/test_img.jpg')
-    coords = (data['Latitude'], data['Longitude'])
-    assert picture_locator.JpgPicFinder.search_location(
-        coords) == 'Rua Domingos Guieiro, Sé, Faro, Algarve, 8000-250 FARO, Portugal'
+@patch("app.picture_locator.Nominatim.reverse")
+def test_search_location(mock_Nominatim):
+    test_point = (12, 45)
+    JpgPicFinder.search_location(test_point)
+    mock_Nominatim.asset_called_with(test_point)
+    mock_Nominatim.asset_called_once_with(test_point)
 
 
 def test_pic_init():
-    test_pic = picture_locator.Picture(name='test_name', location='/tests/location')
+    test_pic = Picture(name='test_name', location='/test/location')
     assert test_pic.name == 'test_name'
-    assert test_pic.location == '/tests/location'
-
-
-def test_google_maps_search():
-    test_pic = picture_locator.Picture(name='test_name', location='New york')
-    test_coords = (40.6971494, 40.6971494)
-    assert '&query=40.6971494,40.6971494' in test_pic.google_maps_search(keys=convertToStr(test_coords))
+    assert test_pic.location == '/test/location'

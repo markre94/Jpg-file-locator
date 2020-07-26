@@ -18,6 +18,7 @@ def app_browser_main() -> webdriver.Chrome :
     print("Killing")
     proc.kill()
     browser.close()
+
     p = subprocess.run("lsof -i -n -P | grep 5000", capture_output=True, shell=True, encoding="utf8")
     print(p.stdout)
     x = [elem for elem in p.stdout.split()]

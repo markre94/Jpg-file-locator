@@ -68,7 +68,7 @@ def test_browse(app_browser_main):
 
     sleep(5)
     assert 'https://www.google.com/maps/place/' in app_browser_main.current_url
-
+    
     test_loc = app_browser_main.find_element_by_xpath('//*[@id="pane"]/div/div[1]/div/div/div[8]/div/div[1]/span[3]/span[3]')
     assert 'Woźna 45, 61-779 Poznań' == test_loc.text
 
