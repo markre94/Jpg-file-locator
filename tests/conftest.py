@@ -1,3 +1,5 @@
+import tempfile, os
+from app.picture_locator import JpgPicFinder
 import pytest
 from selenium import webdriver
 import subprocess
@@ -26,3 +28,9 @@ def app_browser_main() -> webdriver.Chrome :
         subprocess.run(f'kill {x[1]}', shell=True)
     print("Killed")
 
+
+@pytest.fixture
+def provide_test_file():
+    with tempfile.NamedTemporaryFile(suffix='.jpg') as fp:
+        test_jpg = JpgPicFinder(os.path.dirname(fp.name))
+        yield test_jpg, fp
