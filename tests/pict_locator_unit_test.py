@@ -2,6 +2,7 @@ from pytest import raises
 from app.picture_locator import JpgPicFinder, Picture
 from unittest.mock import patch, MagicMock
 
+
 def test_jpg_find_init():
     test_jpg = JpgPicFinder(path_in='/this/is/tes/path')
     assert test_jpg.path_in == '/this/is/tes/path'
@@ -10,7 +11,7 @@ def test_jpg_find_init():
 def test_list_jpg_files():
     with raises(FileNotFoundError):
         test_jpg = JpgPicFinder(path_in='/this/is/tes/path')
-        assert test_jpg.list_jpg_files()
+        test_jpg.list_jpg_files()
 
 
 @patch("app.picture_locator.gpsphoto.getGPSData", return_value={"key", "value"})

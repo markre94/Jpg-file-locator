@@ -1,8 +1,6 @@
 import os
 from geopy.geocoders import Nominatim
 from GPSPhoto import gpsphoto
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 
 
 class JpgPicFinder:
@@ -33,13 +31,6 @@ class Picture:
         self.location = location
         self.name = name
 
-    @staticmethod
-    def google_maps_search(keys: str):
-        chrome_options = Options()
-        chrome_options.add_argument("--headless")
-        browser = webdriver.Chrome(options=chrome_options)
-        browser.get('https://www.google.com/maps/' + 'search/?api=1&query=' + keys)
-        return browser.current_url
 
 
 

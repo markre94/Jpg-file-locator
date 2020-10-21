@@ -1,7 +1,4 @@
 from app.picture_locator import JpgPicFinder
-import tempfile
-import os
-import pytest
 from unittest.mock import patch
 
 
