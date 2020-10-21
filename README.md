@@ -8,6 +8,8 @@ The app has got a cool feature which allows user to see the actual localisation 
 
 This applies only for the pictures in .jpg format that have an GPSInfo available. It should work porperly with the all of the pictures took on Iphone and Android smarphones.
 
+The application is fully coverd with autoamted test using selenium WebDrvier.
+
 ### File structure
 The Jpg_flask consist the following files:
 - run.py _runs an application_
